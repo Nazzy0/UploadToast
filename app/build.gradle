@@ -1,21 +1,18 @@
-
 plugins {
-    id 'com.android.application'
-    
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
     namespace 'com.example.uploadtoast'
     compileSdk 34
-    
+
     defaultConfig {
-        applicationId "com.example.uploadtoast"
         minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0"
-        
-        vectorDrawables { 
+        vectorDrawables {
             useSupportLibrary true
         }
     }
@@ -34,15 +31,22 @@ android {
 
     buildFeatures {
         viewBinding true
-        
     }
-    
 }
 
 dependencies {
-
-
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.appcompat:appcompat:1.6.1")
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            from components.release
+            groupId = 'com.github.Nazzy0'
+            artifactId = 'UploadToast'
+            version = '0.1'
+        }
+    }
 }
